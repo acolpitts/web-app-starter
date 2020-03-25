@@ -1,4 +1,4 @@
-import { inputsAreValid } from './utils/inputs-are-valid';
+import { inputsAreValid } from "../utils/inputs-are-valid";
 
 export class AlertService {
   constructor() {
@@ -13,11 +13,11 @@ export class AlertService {
         return message + `${str} is not a number. `;
       }
     }, "Please enter two valid numbers! ");
-  
+
     this.errorBox.classList.remove("invisible");
     this.errorBox.innerText = fullMessage;
   }
-  
+
   hideErrors() {
     this.errorBox.classList.add("invisible");
   }
