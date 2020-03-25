@@ -1,5 +1,5 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const StyleLintPlugin = require("stylelint-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -12,6 +12,22 @@ module.exports = {
         use: ["html-loader"]
       },
       {
+        test: /\.js$/,
+        enforce: "pre",
+        exclude: /node_modules/,
+        use: ["eslint-loader"]
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"]
+          }
+        }
+      },
+      {
         test: /\.(svg|png|jpg|gif)$/,
         use: {
           loader: "file-loader",
@@ -22,5 +38,13 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new StyleLintPlugin({
+      context: path.resolve(__dirname, "../src/styles"),
+      files: "**/*.scss",
+      failOnError: false,
+      quiet: false
+    })
+  ]
 };
