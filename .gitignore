@@ -1,0 +1,10 @@
+# dependencies
+node_modules
+
+# production files
+dist
+
+# misc
+.DS_Store
+.idea
+.vscode
